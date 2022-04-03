@@ -26,7 +26,7 @@ router.post("/api/runcode", (req, res) => {
     var output;
     try {
       let options = {stdio : 'pipe' };
-      output = execSync('sudo docker run --rm=True -v $(pwd)/code/:/home/ -w /home/ --name compiler python:3.10 bash -c "python main.py < input.txt"', options).toString();
+      output = execSync('docker run --rm=True -v $(pwd)/code/:/home/ -w /home/ --name compiler python:3.10 bash -c "python main.py < input.txt"', options).toString();
     } catch (err) {
       output = err.stderr.toString();
     }
