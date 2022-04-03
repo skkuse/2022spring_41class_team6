@@ -7,6 +7,9 @@ run 버튼을 누르면 output div에 실행 결과가 갱신된다.
 
 사용자가 입력한 코드와 인풋은 axios를 통해 post request로 서버에 전송되며 python:3.10 도커 컨테이너 내부에서 해당 코드가 실행되고 그 결과가 클라이언트 쪽으로 전송된다.
 
+# 실행 화면
+<img src="https://user-images.githubusercontent.com/38034263/161439790-a7354fe9-3e00-4972-b4a5-ae3322b3e051.png"/>
+
 # 실행을 위해 필요한 과정
 Docker와 nodejs, 그리고 npm 라이브러리를 설치해야 한다.
 
@@ -25,7 +28,9 @@ sudo apt-get -y install \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io
-sudo /etc/init.d/docker start
+sudo usermod -aG docker $USER
+sudo service docker start
+
 ```
 
 ## nodejs npm 설치
