@@ -1,4 +1,4 @@
-const DBManager = require("../DBManager");
+const DBManager = require("../models");
 const sequelize = require("sequelize");
 const Op = sequelize.Op;
 
@@ -45,6 +45,16 @@ const apis = {
         else {
             return true;
         }
+    },
+
+    // 유저 정보 가져오기
+    async getUserInfo(req){
+        let result = await DBManager.User.findOne({
+            where:{
+                id:req.params.id
+            }
+        });
+        return result;
     },
 
     // 요청한 문제 출력
