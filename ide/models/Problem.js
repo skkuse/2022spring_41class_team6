@@ -10,9 +10,13 @@ module.exports = function (sequelize, DataTypes) {
           primaryKey: true,
           autoIncrement: true
         },
+        chapter:{
+          type: DataTypes.STRING,
+          allowNull: true,
+        },
         problem:{
-            type: DataTypes.STRING,
-            allowNull: true,
+          type: DataTypes.STRING,
+          allowNull: true,
         },
         answer:{
             type: DataTypes.STRING,
