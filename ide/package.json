@@ -6,12 +6,17 @@
   "dependencies": {
     "axios": "^0.26.1",
     "codemirror": "^5.65.2",
+    "cors": "^2.8.5",
     "ejs": "^3.1.6",
     "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.15",
     "python-shell": "^3.0.1",
+    "sequelize": "^6.19.0",
+    "sequelize-cli": "^6.4.1",
     "utils": "^0.3.1"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
