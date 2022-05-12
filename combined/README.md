@@ -2,7 +2,7 @@
 frontend에 python IDE를 삽입하고 RUN 버튼을 눌렀을 때 코드와 인풋에 대한 실행 결과를 확인할 수 있다.
 
 # 실행 화면
-<img src="https://user-images.githubusercontent.com/38034263/161439790-a7354fe9-3e00-4972-b4a5-ae3322b3e051.png"/>
+<img src="https://user-images.githubusercontent.com/38034263/168148109-86fb51c6-c83b-42af-9164-a8ef32f00172.png"/>
 
 # 실행을 위해 필요한 과정
 Docker와 nodejs, 그리고 npm 라이브러리를 설치해야 한다.
