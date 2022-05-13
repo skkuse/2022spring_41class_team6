@@ -5,9 +5,7 @@ export default function Editor()
 
 
     return (
-        <Form style={
-            {width:"100%"}
-        }>
+        <Form>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Code</Form.Label>
                     <Form.Control as="textarea" rows={20} />

@@ -24,29 +24,26 @@ export default function ProblemInfo()
                 </Row>
 
                 <Row>
-                    <Col  style={{marginBottom:"0.5rem"}} sm={3}>
+                    <Col   xs={4} >
                        <ProblemCard pid={pid} chapter={chapter} title={title}/>
                     </Col>
-                    <Col   sm={9}>
+                    <Col  xs={8}>
                         <Row >
                             <Editor/>
                         </Row>
                         <Row>
-                            <Col sm style={{border : "2px solid green", borderRadius:"1.2rem" }} >
+                            <Col style={{border : "2px solid green", borderRadius:"1.2rem" }}  xs={8}>
                                 <div>콘솔창이 들어갈 곳</div>
                                 <div>콘솔창이 들어갈 곳</div>
                             </Col>
-                            <Col sm>
-                                <Row style={{marginTop:"0.5rem"}}>
-                                    <Col sm>
-                                        <Button style={{width:"100%", height:"100%"}} variant="primary" > RUN </Button>
-                                    </Col>
-                                    <Col sm>
-                                        <Button  style={{width:"100%",height:"100%"}} variant="danger" > SUBMIT </Button>
-                                    </Col>
-                                </Row>
+                            <Col  >
+                                <Button style={{width:"100%", height:"100%"}} variant="primary" > RUN </Button>
+                            </Col>
+                            <Col  >
+                                <Button  style={{width:"100%",height:"100%"}} variant="danger" > SUBMIT </Button>
                             </Col>
                         </Row>
+
                     </Col>
                 </Row>
 
