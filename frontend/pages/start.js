@@ -7,7 +7,7 @@ import {BlueButton} from "../components/BlueButton";
 export default function StartPage()
 {
 const moveContents = () => {
-Router.push(`/book/contents?chapter=${1}&subchapter=${1}`);
+Router.push("/book/hello");
 }
 const moveProblem = () => {
         Router.push("/problems");
