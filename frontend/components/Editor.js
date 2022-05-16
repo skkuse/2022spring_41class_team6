@@ -1,16 +1,15 @@
-import {Form} from "react-bootstrap";
+import CodeMirror from '@uiw/react-codemirror';
+import { python } from '@codemirror/lang-python';
 
-export default function Editor()
-{
-
-
-    return (
-        <Form style={
-            {width:"100%"}
-        }>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Code</Form.Label>
-                    <Form.Control as="textarea" rows={20} />
-                </Form.Group>
-        </Form>);
+export default function App(props) {
+  return (
+      <CodeMirror
+        height="500px"
+        value={props.code}
+        extensions={[python()]}
+        onChange={(value, viewUpdate) => {
+          props.setCode(value);
+        }}
+      />
+  );
 }
