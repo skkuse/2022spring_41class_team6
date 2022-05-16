@@ -30,20 +30,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/auth/signup": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/auth/signup.js"
-    ],
-    "/book/hello": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/book/hello.js"
-    ],
     "/problems": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/problems.js"
+    ],
+    "/problems/problem": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/problems/problem.js"
     ],
     "/problems/problemlist": [
       "static/chunks/webpack.js",
