@@ -1,11 +1,15 @@
-import {Badge, Button, Col, Container, Form, Row} from "react-bootstrap";
+import {Badge, Button, Col, Container, FloatingLabel, Form, Row} from "react-bootstrap";
 import Router from "next/router";
+const DBManager = require("../models");
+const sequelize = require("sequelize");
+const Op = sequelize.Op;
 
 export default function SignUpPage()
 {
     const moveBack =() => {
-        Router.push("/auth/login");
+        // Router.push("/auth/login");
     }
+
     const Signup = () => {
         Router.push("/auth/login");
     }

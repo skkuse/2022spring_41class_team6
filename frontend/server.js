@@ -4,6 +4,7 @@ const next = require('next');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
+const DBManager = require('./DBManager')
 
 const dev = process.env.NODE_ENV !== 'production';
 
@@ -17,17 +18,17 @@ app.prepare().then(() => {
   server.use(express.json());
   server.use(express.urlencoded({ extended: true }));
   server.use(cookieParser(process.env.COOKIE_SECRET));
-  server.use(
-    expressSession({
-      resave: false,
-      saveUninitialized: false,
-      secret: '',
-      cookie: {
-        httpOnly: true,
-        secure: false,
-      },
-    }),
-  );
+  // server.use(
+  //   expressSession({
+  //     resave: false,
+  //     saveUninitialized: false,
+  //     secret: '',
+  //     cookie: {
+  //       httpOnly: true,
+  //       secure: false,
+  //     },
+  //   }),
+  // );
   server.get('/hashtag/:tag', (req, res) => {
     return app.render(req, res, '/hashtag', { tag: req.params.tag });
   });
