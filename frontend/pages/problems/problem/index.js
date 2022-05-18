@@ -60,7 +60,8 @@ export default function ProblemInfo()
                         </Row>
                         <Row>
                             <Col style={{border : "2px solid green", borderRadius:"1.2rem" }}  xs={8}>
-                                <div style={{overflow: "auto"}}>{output}</div>
+                                <textarea readonly style={{overflow: "scroll", width:"100%", height: "100px"}}
+                                value={output}></textarea>
                             </Col>
                             <Col  >
                                 <Button style={{width:"100%", height:"100%"}} variant="primary"
