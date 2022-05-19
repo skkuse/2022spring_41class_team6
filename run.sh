@@ -19,3 +19,6 @@ docker pull mysql:8
 docker run -d --net=host --name web --restart=always -v /var/run/docker.sock:/var/run/docker.sock \
 -v $(which docker):/bin/docker -v $(pwd)/$seperator:$(pwd)/$seperator -w $(pwd)/$seperator \
 node:18 bash -c "npm install && npm run dev"
+
+docker run -d --net=host --name mysql --restart=always -v $(pwd)/$seperator/db:/var/lib/mysql \
+-e MYSQL_ROOT_PASSWORD=qwer1234 mysql:8
