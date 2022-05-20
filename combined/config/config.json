@@ -3,7 +3,7 @@
     "username": "root",
     "password": "qwer1234",
     "database": "team6",
-    "host": "127.0.0.1",
+    "host": "huichan.synology.me",
     "dialect": "mysql",
     "port": 3306,
     "pool": {
