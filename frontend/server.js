@@ -7,7 +7,6 @@ const dotenv = require('dotenv');
 const DBManager = require('./DBManager')
 
 const dev = process.env.NODE_ENV !== 'production';
-
 const app = next({ dev });
 const handle = app.getRequestHandler(); // app에서 뽑아온 get요청 처리기
 
@@ -35,9 +34,10 @@ app.prepare().then(() => {
   server.get('/user/:id', (req, res) => {
     return app.render(req, res, '/user', { tag: req.params.id });
   });
-  server.get('*', (req, res) => handle(req, res));
+  server.all('*', (req, res) => handle(req, res));
 
   server.listen(3060, () => {
     console.log('next + express running on : http://localhost:3060');
   });
+
 });
