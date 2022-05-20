@@ -22,13 +22,8 @@ export default (req, res) => {
           output = "Output Size is too large"
           break;
         default:
-          var errs = err.stderr.toString().split("\n");
-          if (errs[0].includes('WARNING: Error loading config file: ')){
-            output = errs.slice(1,-1).join("\n");
-          }
-          else {
-            output = errs.join("\n");
-          }
+          output = err.stderr.toString();
+          break;
       }
     }
     res.send(output);
