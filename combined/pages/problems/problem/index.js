@@ -22,7 +22,8 @@ export default function ProblemInfo()
       setOutput("Processing...");
       axios.post("/api/runcode", {
         code: code,
-        input: input
+        input: input,
+        pid : pid
       }).then(function(res) {
         let ret = res["data"];
         setOutput(ret);

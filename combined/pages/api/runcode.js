@@ -5,6 +5,7 @@ export default (req, res) => {
   if (req.method === "POST") {
     let code = req.body.code;
     let input = req.body.input;
+    let pid = req.body.pid;
     let id = 0;
     const dir = `code/${id}/`;
     if (!fs.existsSync(dir)) {
@@ -40,6 +41,16 @@ export default (req, res) => {
             }
         }
       }
+      answer = ouput
+      pid = await DBManger.problem.findOne({
+        where:{
+          id : pid
+        }
+      })
+      if (pid.answer == output){
+
+      }
+
       res.send(output);
     });
   }
