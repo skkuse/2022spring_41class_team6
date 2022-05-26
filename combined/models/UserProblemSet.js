@@ -23,22 +23,26 @@ module.exports = function (sequelize, DataTypes) {
         charset: "utf8",
         underscored: true,
       }
-    );
+    )
+    userProblemSet.associate = models => {
+       userProblemSet.belongsTo(models.User, {foreignKey: "user_id", sourceKey: "id"});
+       userProblemSet.belongsTo(models.Problem, {foreignKey: "problem_id", sourceKey: "id"});
+  };
 
-    userProblemSet.associate = function (models) {
-        userProblemSet.belongsTo(models.User, {
-          foreignKey: {
-            name: 'id'
-          },
-          as:'user',
-        });
-        userProblemSet.belongsTo(models.Problem, {
-          foreignKey: {
-            name: 'id'
-          },
-          as:'problem'
-        });
-    }
+    // userProblemSet.associate = function (models) {
+    //     userProblemSet.belongsTo(models.User, {
+    //       foreignKey: {
+    //         name: 'id'
+    //       },
+    //       as:'user',
+    //     });
+    //     userProblemSet.belongsTo(models.Problem, {
+    //       foreignKey: {
+    //         name: 'id'
+    //       },
+    //       as:'problem'
+    //     });
+    // }
   
     return userProblemSet;
   };

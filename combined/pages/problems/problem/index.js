@@ -1,5 +1,6 @@
 import {useRouter} from "next/router";
 import {useState} from "react";
+import {useEffect} from "react";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import ProblemList from "../../../components/ProblemList";
 import DefaultLayout from "../../../layouts/defaultLayout";
@@ -11,7 +12,8 @@ export default function ProblemInfo()
 {
     const router = useRouter();
     const pid = router.query.pid;
-    const chapter = router.query.chapter;
+    var chapter = String(router.query.chapter) + "-" + String(pid);
+
     const title = router.query.title;
 
     const [code, setCode] = useState("");
@@ -20,16 +22,73 @@ export default function ProblemInfo()
 
     const runCode = () => {
       setOutput("Processing...");
+
+      axios.post("/api/savecode", {
+        chapter: chapter,
+        code: code,
+      }).then(function(res) {
+        console.log("Save code success!");
+      }).catch(function (error){
+        console.log("Save code error!");
+      });
+
       axios.post("/api/runcode", {
         code: code,
         input: input
       }).then(function(res) {
-        let ret = res["data"];
+        var ret = res["data"];
         setOutput(ret);
       }).catch(function (error){
         setOutput(error);
       });
     };
+
+    const submitCode = () => {
+      setOutput("Submitting...");
+
+      axios.post("/api/savecode", {
+        chapter: chapter,
+        code: code,
+      }).then(function(res) {
+        console.log("Save code success!");
+      }).catch(function (error){
+        console.log("Save code error!");
+      });
+
+      axios.post("/api/runcode", {
+        code: code,
+        input: ""
+      }).then(function(res) {
+        var ret = res["data"];
+        axios.post("/api/checkAnswer", {
+          chapter: chapter,
+          output: ret
+        }).then(function(res) {
+          var ret = res["data"];
+          if (ret){
+            setOutput("Correct Answer!");
+          }
+          else {
+            setOutput("Wrong Answer!");
+          }
+        }).catch(function (error){
+          setOutput(error);
+        });
+      }).catch(function (error){
+        setOutput(error);
+      });
+    }
+
+    useEffect(() => {
+      axios.post("/api/loadcode", {
+        chapter: chapter,
+      }).then(function(res) {
+        var ret = res["data"];
+        setCode(ret);
+      }).catch(function (error){
+        console.log(error);
+      });
+    }, [chapter]);
 
     return (
         <DefaultLayout>
@@ -60,7 +119,7 @@ export default function ProblemInfo()
                         </Row>
                         <Row>
                             <Col style={{border : "2px solid green", borderRadius:"1.2rem" }}  xs={8}>
-                                <textarea readonly style={{overflow: "scroll", width:"100%", height: "100px"}}
+                                <textarea readOnly style={{overflow: "scroll", width:"100%", height: "100px"}}
                                 value={output}></textarea>
                             </Col>
                             <Col  >
@@ -69,7 +128,7 @@ export default function ProblemInfo()
                             </Col>
                             <Col  >
                                 <Button  style={{width:"100%",height:"100%"}} variant="danger"
-                                > SUBMIT </Button>
+                                onClick={submitCode}> SUBMIT </Button>
                             </Col>
                         </Row>
                     </Col>

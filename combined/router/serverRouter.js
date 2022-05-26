@@ -1,29 +1,46 @@
 const express = require("express");
 const router = express.Router();
 const serverApis = require("../pages/api/server_apis");
+const DBManager = require('../DBManager');
 
-router.get('/auth/login',(req,res,next)=>{
-    serverApis.userLoginGet(req,res);
-})
-
-router.post('/auth/login',(req,res,next)=>{
+router.post('/api/auth/login',(req,res,next)=>{
     serverApis.userLoginPost(req,res);
 })
 
-router.post('/auth/signup',(req,res,next)=>{
+router.post('/api/auth/signup',(req,res,next)=>{
     serverApis.userRegister(req,res)
 })
 
-router.get('/userInfo/:id',(req,res,next)=>{
-    serverApis.getUserInfo(req);
+router.post('/api/userInfo/:id',(req,res,next)=>{
+    serverApis.getUserInfo(req,res);
 })
 
-router.get('/emailOverlap',(req,res,next)=>{
-
+router.post('/api/book/contents',(req,res,next)=>{
+    serverApis.getTutorial(req,res);
 })
 
-router.get('/problem/:id',(req,res,next)=>{
-    serverApis.getProblem(req);
+router.post('/api/problem',(req,res,next)=>{
+    serverApis.getProblem(req,res);
+})
+
+router.post('/api/allProblem',(req,res,next)=>{
+    serverApis.getAllProblem(req,res);
+})
+
+router.post('/api/checkAnswer',(req,res,next)=>{
+    serverApis.checkAnswer(req,res);
+})
+
+router.post('/api/isSolved',(req,res,next)=>{
+    serverApis.getUserProblem(req,res)
+})
+
+router.post('/api/savecode',(req,res,next)=>{
+    serverApis.saveCode(req,res)
+})
+
+router.post('/api/loadcode',(req,res,next)=>{
+    serverApis.loadCode(req,res)
 })
 
 module.exports = router;

@@ -1,12 +1,19 @@
 import {Badge, Button, Col, Container, Form, Row} from "react-bootstrap";
 import Router from "next/router";
-
+import axios from "axios";
 export default function SignUpPage()
 {
     const moveBack =() => {
         Router.push("/auth/login");
     }
     const Signup = () => {
+        axios.post("/api/auth/signup", {
+            email: floatingInputCustom[0].value,
+            password: floatingPasswordCustom[0].value
+            }).then(function(res) {
+              console.log(res);
+            }).catch(function (error){
+          });
         Router.push("/auth/login");
     }
     return(

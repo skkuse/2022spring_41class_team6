@@ -15,11 +15,11 @@ module.exports = function (sequelize, DataTypes) {
           allowNull: true,
         },
         problem:{
-          type: DataTypes.STRING,
+          type: DataTypes.TEXT,
           allowNull: true,
         },
         answer:{
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: true,
         },
     },
@@ -30,6 +30,12 @@ module.exports = function (sequelize, DataTypes) {
         underscored: true,
       }
     );
+    problem.associate = models => {
+      /**
+       * Users안에 있는 "id값"을 "user_id라는 컬럼 이름"으로 UserInfo모델에 새로운 컬럼으로 추가한다.
+       */
+      problem.hasMany(models.UserProblemSet, {foreignKey: "problem_id", sourceKey: 'id'});
+  };
   
     return problem;
   };

@@ -1,5 +1,7 @@
 # 2022spring_41class_team6
 
+These commands support Ubuntu 18.04
+
 # Execution command
 ```
 ./run.sh
@@ -11,4 +13,4 @@
 ```
 
 # Access root
-http://localhost:3000/
+http://localhost:3060/

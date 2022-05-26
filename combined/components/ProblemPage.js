@@ -13,7 +13,6 @@ export default function ProblemPage()
     };
 
     const moveProblemList= (chapter)=>{
-
         router.push(`/problems/problemlist/?chapter=${chapter}`);
     };
 

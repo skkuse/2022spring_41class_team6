@@ -15,7 +15,7 @@ export default function ProblemList({chapter})
 
         <ListGroup as="ol" numbered>
             {ProblemList.map((title, index) => (
-              <ProblemItem key= {index} pid={index} title={title} chapter={chapter} Solved={"UnSolved"}/>
+              <ProblemItem key= {index} pid={index+1} title={title} chapter={chapter} Solved={"UnSolved"}/>
             ))}
         </ListGroup>
     );

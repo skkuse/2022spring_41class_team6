@@ -15,6 +15,6 @@
     "dialectOptions": {
       "charset": "utf8"
     },
-    "logging": true
+    "logging": false
   }
 }

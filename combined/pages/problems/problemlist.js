@@ -10,7 +10,7 @@ import {useEffect} from "react";
 export default function Problemlist()
 {
     const router = useRouter();
-     const chapter=router.query.chapter;
+    const chapter=router.query.chapter;
 
     return (<DefaultLayout>
             <Container className="justify-content-md-center">
