@@ -159,8 +159,37 @@ const apis = {
         })
         console.log(problems)
         res.send(problems)
+    },
+    async getAllTutorial(){
+        const tutorials = await DBManager.tutorial.findAll({})
+        res.send(tutorials);
+    },
+    async saveCode(req,res){
+        const problem = await DBManager.problem.findOne({
+            where:{
+                chapter: req.body.chapter
+            }
+        })
+        await DBManager.UserSaveCode.create({
+            problem_id : problem.id,
+            user_id : req.session.uid,
+            code : req.body.code
+        })
+    },
+    async loadCode(req,res){
+        const problem = await DBManager.problem.findOne({
+            where:{
+                chapter: req.body.chapter
+            }
+        })
+        const code = await DBManager.UserSaveCode.findOne({
+            where:{
+                problem_id : problem.id,
+                user_id : req.session.uid
+            }
+        })
+        res.send(code)
     }
-
 }
 
 module.exports = apis;

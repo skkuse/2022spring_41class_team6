@@ -54,4 +54,12 @@ router.post('/api/isSolved',(req,res,next)=>{
     serverApis.getUserProblem(req,res)
 })
 
+router.post('/api/savecode',(req,res,next)=>{
+    serverApis.saveCode(req,res)
+})
+
+router.post('/api/loadcode',(req,res,next)=>{
+    serverApis.loadCode(req,res)
+})
+
 module.exports = router;
