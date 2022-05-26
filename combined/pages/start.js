@@ -3,13 +3,14 @@ import ContentsCard from "../components/ContentsCard";
 import PinkButton from "../components/PinkButton";
 import Router from "next/router";
 import {BlueButton} from "../components/BlueButton";
-
+import axios from "axios";
 export default function StartPage()
 {
 const moveContents = () => {
-Router.push(`/book/contents?chapter=${1}&subchapter=${1}`);
+    Router.push(`/book/contents?chapter=${1}&subchapter=${1}`);
 }
 const moveProblem = () => {
+
         Router.push("/problems");
     }
 

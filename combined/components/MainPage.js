@@ -18,7 +18,7 @@ export default function MainPage({chapter, subChapter})
             <Row className="justify-content-md-center">
                 <Col xs>
                     <h1 style={{textAlign:"center"}}>
-                        {chapter}-{subChapter} 소챕터 제목
+                        {chapter}-{subChapter} 
                     </h1>
                     <p style={{textAlign:"center",fontSize:'1.5rem'}}> <Badge  bg="secondary">Chapter {chapter}-{subChapter}</Badge></p>
                 </Col>

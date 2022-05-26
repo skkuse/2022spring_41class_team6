@@ -25,15 +25,30 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/auth/login": [
+    "/book/contents": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/auth/login.js"
+      "static/chunks/pages/book/contents.js"
     ],
-    "/auth/signup": [
+    "/problems": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/auth/signup.js"
+      "static/chunks/pages/problems.js"
+    ],
+    "/problems/problem": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/problems/problem.js"
+    ],
+    "/problems/problemlist": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/problems/problemlist.js"
+    ],
+    "/start": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/start.js"
     ]
   },
   "ampFirstPages": []

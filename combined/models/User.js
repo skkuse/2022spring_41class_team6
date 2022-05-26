@@ -26,6 +26,15 @@ module.exports = function (sequelize, DataTypes) {
         underscored: true,
       }
     );
+    // user.hasMany(models.UserProblemSet);
+
+    user.associate = models => {
+      /**
+       * Users안에 있는 "id값"을 "user_id라는 컬럼 이름"으로 UserInfo모델에 새로운 컬럼으로 추가한다.
+       */
+      user.hasMany(models.UserProblemSet, {foreignKey: "user_id", sourceKey: 'id'});
+  };
+
   
     return user;
   };
