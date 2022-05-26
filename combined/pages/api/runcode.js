@@ -6,7 +6,6 @@ export default (req, res) => {
     let code = req.body.code;
     let input = req.body.input;
     let pid = req.body.pid;
-    console.log(pid)
     let id = 0;
     const dir = `code/${id}/`;
     if (!fs.existsSync(dir)) {
