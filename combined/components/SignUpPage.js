@@ -7,11 +7,14 @@ export default function SignUpPage()
     Router.push("/auth/login");
   }
   const Signup = () => {
+    if (!floatingInputCustom[0].value || !floatingPasswordCustom[0].value){
+      alert("Empty Field Exists!");
+      return
+    }
     axios.post("/api/auth/signup", {
       email: floatingInputCustom[0].value,
       password: floatingPasswordCustom[0].value
     }).then(function(res) {
-      console.log(res);
     }).catch(function (error){
       console.log(error);
     });

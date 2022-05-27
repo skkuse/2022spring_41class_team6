@@ -1,29 +1,33 @@
 import {Badge, ListGroup} from "react-bootstrap";
 import Router from "next/router";
 import axios from "axios";
-import { useState } from "react";
+import {useState} from "react";
 import {useEffect} from "react";
 
-export default function ProblemItem({chapter,title,pid,Solved})
+export default function ProblemItem({chapter,title,Solved})
 {
-  const [output, setOutput] = useState("");
+  const [color, setColor] = useState("danger");
+  const [solved, setSolved] = useState("");
   useEffect(() => {
+    if (!chapter)
+      return
     axios.post("/api/isSolved", {
-      chapter: String(chapter) + "-" + String(pid)
+      chapter: chapter
     }).then(function(res) {
       let ret = res["data"]["is_solved"]
-      if(ret == 'Y') {
-        setOutput("Solved")
+      if(ret == 'Y'){
+        setSolved("Solved")
+        setColor("primary")
       }
       else
-      setOutput("UnSolved");
+        setSolved("UnSolved");
     }).catch(function (error){
       console.log(error);
     });
   }, [chapter]);
 
   const moveProblem = () => {
-    Router.push(`/problems/problem/?pid=${pid}&chapter=${chapter}&title=${title}`)
+    Router.push(`/problems/problem/?&chapter=${chapter}`)
   }
   return (
     <ListGroup.Item onClick={moveProblem}
@@ -31,10 +35,10 @@ export default function ProblemItem({chapter,title,pid,Solved})
       className="d-flex justify-content-between align-items-start"
     >
       <div className="ms-2 me-auto fw-bold">
-        {chapter}-{pid}
+        {chapter} {title}
       </div>
-      <Badge bg="primary" pill>
-        {output}
+      <Badge bg={color} pill>
+        {solved}
       </Badge>
     </ListGroup.Item>
   );

@@ -11,12 +11,20 @@ router.post('/api/auth/signup',(req,res,next)=>{
   serverApis.userRegister(req,res)
 })
 
-router.post('/api/userInfo/:id',(req,res,next)=>{
+router.post('/api/auth/logout',(req,res,next)=>{
+  serverApis.userLogout(req,res);
+})
+
+router.post('/api/userInfo/',(req,res,next)=>{
   serverApis.getUserInfo(req,res);
 })
 
-router.post('/api/book/contents',(req,res,next)=>{
+router.post('/api/content',(req,res,next)=>{
   serverApis.getTutorial(req,res);
+})
+
+router.post('/api/allContent',(req,res,next)=>{
+  serverApis.getAllTutorial(req,res);
 })
 
 router.post('/api/problem',(req,res,next)=>{

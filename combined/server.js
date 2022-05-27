@@ -1,7 +1,7 @@
-const express = require('express');
 const next = require('next');
-const serverRouter = require("./router/serverRouter");
+const express = require('express');
 const session = require('express-session');
+const serverRouter = require("./router/serverRouter");
 const DBManager = require('./DBManager');
 
 const dev = process.env.NODE_ENV !== 'production';
@@ -24,8 +24,17 @@ app.prepare().then(() => {
     }
   }))
 
+  server.get("/", (req, res) => res.redirect('/auth/login'));
   server.use("/", serverRouter);
-  server.all('*', (req, res) => handle(req, res));
+  server.all("/_next/*", (req, res) => handle(req, res));
+  server.all('*', (req, res) => {
+    if (!req.session.uid && req.url != "/auth/login" && req.url != "/auth/signup")
+      res.redirect('/auth/login') // 로그인 안 되어 있을 때 리다이렉트
+    else if (req.session.uid && (req.url == "/auth/login" || req.url == "/auth/signup"))
+      res.redirect('/start') // 이미 로그인 되어 있을 때 리다이렉트
+    else
+      handle(req, res)
+  });
 
   server.listen(3060, () => {
     console.log('next + express running on : http://localhost:3060');

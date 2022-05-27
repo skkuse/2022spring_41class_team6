@@ -3,7 +3,7 @@ import ContentsCard from "./ContentsCard";
 import DefaultLayout from "../layouts/defaultLayout";
 import {useRouter} from "next/router";
 
-export default function MainPage({chapter, subChapter})
+export default function MainPage({chapter})
 {
   const tempStyle={
     boder:"1px solid black",
@@ -17,15 +17,15 @@ export default function MainPage({chapter, subChapter})
         <Row className="justify-content-md-center">
           <Col xs>
             <h1 style={{textAlign:"center"}}>
-              {chapter}-{subChapter}
+              {chapter}
             </h1>
-            <p style={{textAlign:"center",fontSize:'1.5rem'}}> <Badge  bg="secondary">Chapter {chapter}-{subChapter}</Badge></p>
+            <p style={{textAlign:"center",fontSize:'1.5rem'}}> <Badge  bg="secondary">Chapter {chapter}</Badge></p>
           </Col>
         </Row>
         {/* Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop */}
         <Row className="justify-content-md-center">
           <Col>
-            <ContentsCard subChapter={subChapter} chapter={chapter}/>
+            <ContentsCard chapter={chapter}/>
           </Col>
         </Row>
       </Container>

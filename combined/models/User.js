@@ -35,6 +35,5 @@ module.exports = function (sequelize, DataTypes) {
     user.hasMany(models.UserProblemSet, {foreignKey: "user_id", sourceKey: 'id'});
   };
 
-
   return user;
 };

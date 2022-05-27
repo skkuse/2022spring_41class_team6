@@ -1,19 +1,31 @@
 import {ListGroup} from "react-bootstrap";
 import ProblemItem from "./ProblemItem";
+import axios from "axios";
+import {useState} from "react";
+import {useEffect} from "react";
 
-export default function ProblemList({chapter})
+export default function ProblemList({index})
 {
-  //const makeProblemList =
-  const ProblemList=["문제 이름","문제 이름","문제 이름","문제 이름",
-  "문제 이름","문제 이름","문제 이름","문제 이름","문제 이름","문제 이름",
-  "문제 이름","문제 이름","문제 이름","문제 이름","문제 이름",
-  "문제 이름","문제 이름","문제 이름","문제 이름","문제 이름",
-  "문제 이름","문제 이름","문제 이름","문제 이름","문제 이름"];
+  const [problems, setProblems] = useState([]);
+
+  useEffect(() => {
+    axios.post("/api/allProblem", {
+    }).then(function(res) {
+      let ret = res["data"];
+      ret = ret.filter(function(problem) {
+        return problem["chapter"].split('-',1) == index
+      });
+      setProblems(ret);
+    }).catch(function (error){
+      console.log(error);
+    });
+  }, [index]);
+
   return (
     <ListGroup as="ol" numbered>
-      {ProblemList.map((title, index) => (
-        <ProblemItem key= {index} pid={index+1} title={title} chapter={chapter} Solved={"UnSolved"}/>
-      ))}
+      {problems.map(problem =>
+        <ProblemItem key={"problem_"+problem["chapter"]} title={problem["problem"].slice(0,20) + "..."} chapter={problem["chapter"]} Solved={"UnSolved"}/>
+      )}
     </ListGroup>
   );
 }

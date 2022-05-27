@@ -6,12 +6,15 @@ export default function LoginPage()
 {
   let ret = "";
   const moveMain =() => {
+    if (!floatingInputCustom.value || !floatingPasswordCustom.value){
+      alert("Empty Field Exists!");
+      return
+    }
     axios.post("/api/auth/login", {
       email: floatingInputCustom.value,
       password: floatingPasswordCustom.value
     }).then(function(res) {
       ret = res["data"];
-      console.log(ret);
       if(ret === true)
       {Router.push("/start");}
       else {alert("Login ERROR!");}

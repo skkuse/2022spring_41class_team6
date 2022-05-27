@@ -1,26 +1,26 @@
-import {useRouter} from "next/router";
-import {useState} from "react";
-import {useEffect} from "react";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import ProblemList from "../../../components/ProblemList";
 import DefaultLayout from "../../../layouts/defaultLayout";
 import ProblemCard from "../../../components/ProblemCard";
 import Editor from "../../../components/Editor";
+import {useRouter} from "next/router";
+import {useState} from "react";
+import {useEffect} from "react";
 import axios from "axios";
 
+// 어떤 한 문제를 실제로 푸는 페이지
 export default function ProblemInfo()
 {
   const router = useRouter();
-  const pid = router.query.pid;
-  var chapter = String(router.query.chapter) + "-" + String(pid);
-
-  const title = router.query.title;
+  var chapter = router.query.chapter;
 
   const [code, setCode] = useState("");
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
 
   const runCode = () => {
+    if (!chapter && !code)
+      return
     setOutput("Processing...");
 
     axios.post("/api/savecode", {
@@ -44,6 +44,8 @@ export default function ProblemInfo()
   };
 
   const submitCode = () => {
+    if (!chapter)
+      return
     setOutput("Submitting...");
 
     axios.post("/api/savecode", {
@@ -65,12 +67,10 @@ export default function ProblemInfo()
         output: ret
       }).then(function(res) {
         var ret = res["data"];
-        if (ret){
+        if (ret)
           setOutput("Correct Answer!");
-        }
-        else {
+        else
           setOutput("Wrong Answer!");
-        }
       }).catch(function (error){
         setOutput(error);
       });
@@ -80,6 +80,8 @@ export default function ProblemInfo()
   }
 
   useEffect(() => {
+    if (!chapter)
+      return
     axios.post("/api/loadcode", {
       chapter: chapter,
     }).then(function(res) {
@@ -96,14 +98,14 @@ export default function ProblemInfo()
         <Row  style={{marginTop:"2%"}}  className="justify-content-md-center">
           <Col xs>
             <h1 style={{textAlign:"center"}}>
-              {pid} 번 문제 풀기
+              {chapter} 번 문제 풀기
             </h1>
           </Col>
         </Row>
 
         <Row>
           <Col   xs={4} >
-            <ProblemCard pid={pid} chapter={chapter} title={title}/>
+            <ProblemCard chapter={chapter}/>
           </Col>
           <Col  xs={8}>
             <Row>

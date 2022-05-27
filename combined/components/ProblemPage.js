@@ -12,8 +12,8 @@ export default function ProblemPage()
     textAlign:"center",
   };
 
-  const moveProblemList= (chapter)=>{
-    router.push(`/problems/problemlist/?chapter=${chapter}`);
+  const moveProblemList = (index) => {
+    router.push(`/problems/problemlist/?index=${index}`);
   };
 
   return(

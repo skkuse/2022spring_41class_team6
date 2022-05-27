@@ -1,16 +1,15 @@
-import {Badge, Col, Container, Row} from "react-bootstrap";
-import ContentsCard from "../components/ContentsCard";
+import {Row, Col, Container} from "react-bootstrap";
 import PinkButton from "../components/PinkButton";
 import Router from "next/router";
 import {BlueButton} from "../components/BlueButton";
-import axios from "axios";
+
+// 컨텐츠와 문제풀기를 선택하는 페이지
 export default function StartPage()
 {
   const moveContents = () => {
-    Router.push(`/book/contents?chapter=${1}&subchapter=${1}`);
+    Router.push(`/book/contents?chapter=1-1`);
   }
   const moveProblem = () => {
-
     Router.push("/problems");
   }
 

@@ -1,13 +1,4 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import MainPage from "../components/MainPage";
-import LoginPage from "../components/LoginPage";
-
+// 루트 페이지. 로그인 페이지로 이동한다.
 export default function Home() {
-  return (
-    <div>
-      <LoginPage/>
-    </div>
-  )
+  return
 }

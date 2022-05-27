@@ -3,19 +3,21 @@ import axios from "axios";
 import { useState } from "react";
 import {useEffect} from "react";
 
-export default function ContentsCard({chapter,subChapter})
+export default function ContentsCard({chapter})
 {
-  const [output, setOutput] = useState("");
+  const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
 
   useEffect(() => {
-    axios.post("/api/book/contents", {
-      chapter: String(chapter) + "-" + String(subChapter)
+    if (!chapter)
+      return
+    axios.post("/api/content", {
+      chapter: chapter
     }).then(function(res) {
-      let ret = res["data"]["content"];
-      let ret1 = res["data"]["title"];
-      setOutput(ret);
-      setTitle(ret1);
+      let content = res["data"]["content"];
+      let title = res["data"]["title"];
+      setContent(content);
+      setTitle(title);
     }).catch(function (error){
       console.log(error);
     });
@@ -24,12 +26,12 @@ export default function ContentsCard({chapter,subChapter})
 
   return(<Card style={{ width: '100%'}}>
     <Card.Body>
-      <Card.Title> Chapter {chapter}-{subChapter} {title} </Card.Title>
+      <Card.Title> Chapter {chapter} {title} </Card.Title>
     </Card.Body>
 
     <Card.Body>
       <Card.Text style={{whiteSpace:"pre-wrap"}}>
-        {output}
+        {content}
       </Card.Text>
     </Card.Body>
     <ListGroup className="list-group-flush">

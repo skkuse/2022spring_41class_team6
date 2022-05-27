@@ -14,7 +14,7 @@ const apis = {
           email: body.email
         }
       });
-      if (result != null){
+      if (result){
         let dbPassword = result.password;
         let inputPassword = body.password;
         if (dbPassword == inputPassword) {
@@ -65,23 +65,31 @@ const apis = {
     // res.redirect('/')
   },
 
+  async userLogout(req, res) {
+    if(req.session)
+      req.session.destroy();
+  },
+
   // 정답 확인
   async checkAnswer(req,res){
     const problems = await DBManager.Problem.findAll({
       where: {
-        //id : req.body.pid,
         chapter: req.body.chapter,
         answer : req.body.output
       }
     });
     if(problems.length != 0){
-      await DBManager.UserProblemSet.update(
-        {is_solved : 'Y'},
-        {where:{
+      await DBManager.UserProblemSet.destroy({
+        where: {
           user_id : req.session.uid,
           problem_id : problems[0].id
-        }}
-      )
+        }
+      })
+      await DBManager.UserProblemSet.create({
+          user_id : req.session.uid,
+          problem_id : problems[0].id,
+          is_solved : 'Y'
+      })
       res.send(true);
     }
     else
@@ -109,7 +117,7 @@ const apis = {
   async getUserInfo(req,res) {
     let result = await DBManager.User.findOne({
       where: {
-        id: req.params.id
+        id: req.session.uid
       },
       include:{
         model: DBManager.UserProblemSet
@@ -131,7 +139,7 @@ const apis = {
   // 모든 문제 호출
   async getAllProblem(req,res) {
     const problems = await DBManager.Problem.findAll()
-    res.send(problems.dataValues);
+    res.send(problems);
   },
 
   // 튜토리얼 불러오기
@@ -145,7 +153,7 @@ const apis = {
     res.send(tutorial);
   },
   async getAllTutorial(req,res){
-    const tutorials = await DBManager.tutorial.findAll({})
+    const tutorials = await DBManager.Tutorial.findAll({})
     res.send(tutorials);
   },
 
