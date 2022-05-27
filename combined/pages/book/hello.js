@@ -3,8 +3,8 @@ import MainPage from "../../components/MainPage";
 
 export default function Book() {
   return (
-      <div>
-        <MainPage/>
-      </div>
+    <div>
+      <MainPage/>
+    </div>
   )
 }

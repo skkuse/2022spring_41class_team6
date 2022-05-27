@@ -3,11 +3,9 @@ import ProblemPage from "../../components/ProblemPage";
 
 export default function Problem()
 {
-
-
-return(
+  return(
     <DefaultLayout>
-        <ProblemPage/>
+      <ProblemPage/>
     </DefaultLayout>
-)
+  )
 }

@@ -1,5 +1,6 @@
 # Execution command
 ```
+npm install
 node server.js
 ```
 
