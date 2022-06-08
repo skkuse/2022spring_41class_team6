@@ -22,7 +22,7 @@ export default (req, res) => {
       var output = "";
       try {
         let options = {timeout : 10000,  };
-        output = execSync(`docker run --rm=True -v $(pwd)/${dir}:/app/ -w /app/ --name executor_${id} python:3.10 bash -c "python main.py < input.txt" && rm -rf ${dir}`, options).toString();
+        output = execSync(`docker run --rm=True -v $(pwd)/${dir}:/app/ -w /app/ --name executor_${id} compiler bash -c "python main.py < input.txt" && rm -rf ${dir}`, options).toString();
       } catch (err) {
         switch(err.code) {
           case "ETIMEDOUT":
