@@ -1,0 +1,5 @@
+chapter,title,problem,answer
+5-1,웹스크래핑기초1,임의의 사이트로부터 request라이브러리를 통해서 url에서 html을 불러오고 그 결과를 프린트하는코드를 작성하시오.,200
+5-2,웹스크래핑기초2,네이버 홈페이지로부터 request라이브러리를 통해서 url에서 html을 불러오고 네이버사이트가 어떤 인코딩 방식을 사용하는지 보여주는 코드를 작성하시오.,UTF-8
+5-3,웹스크래핑실습1,네이버 홈페이지로부터 besutifulsoup라이브러리를 통해서 사이트의 타이틀을 가져오시요\n(타이틀의 태그는 ‘title’이다),NAVER
+5-4,웹스크래핑실습2,네이버 홈페이지에서  태그가 ‘link’이고 attribute가 href인 값을 출력하시오,https://pm.pstatic.net/dist/css/nmain.20220526.css
