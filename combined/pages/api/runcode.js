@@ -21,7 +21,7 @@ export default (req, res) => {
     fs.writeFile(dir + "main.py", code, (err) => {
       var output = "";
       try {
-        let options = {timeout : 10000,  };
+        let options = {timeout : 600000,  };
         output = execSync(`docker run --rm=True -v $(pwd)/${dir}:/app/ -w /app/ --name executor_${id} compiler bash -c "python main.py < input.txt" && rm -rf ${dir}`, options).toString();
       } catch (err) {
         switch(err.code) {
