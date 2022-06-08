@@ -18,6 +18,9 @@ Build your skills by solving problems, and finally let's build a web scraper!
 These commands support Ubuntu 18.04
 
 ```
+./build.sh
+# Build only needs to be done once
+
 ./run.sh
 ```
 
